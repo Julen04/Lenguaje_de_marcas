@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/* Mantener todo en la misma linea con box sizing */
+* {
+  box-sizing: border-box;
+}
+
+.img-container {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.imagen{
+    width: 200px;
+    height: 400px;
+}
+</style>
+</head>
+<body>
+
+<h2>Images Side by Side</h2>
+<p>Float images side by side:</p>
+
+<div class="clearfix">
+  <div class="img-container">
+  <img src="Imagenes/imagenprueba.jpg" alt="Ejemplo" style="width:100%">
+  </div>
+  <div class="img-container">
+  <img src="Imagenes/imagenprueba.jpg" alt="Ejemplo" style="width:100%" class="imagen">
+  </div>
+  <div class="img-container">
+  <img src="Imagenes/imagenprueba.jpg" alt="Ejemplo" style="width:100%">
+  </div>
+</div>
+</body>
+</html>
