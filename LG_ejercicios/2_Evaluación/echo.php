@@ -10,16 +10,16 @@ echo "<br>";
 
 if (isset($_GET["gender"]))
 echo $_GET["gender"];
-
+echo "<br>";
 if (isset($_GET["Opcion1"]))
 echo $_GET["Opcion1"];
-
+echo "<br>";
 if (isset($_GET["Opcion2"]))
 echo $_GET["Opcion2"];
-
+echo "<br>";
 if (isset($_GET["Opcion3"]))
 echo $_GET["Opcion3"];
-
-if (isset($_GET["comment"]))
-echo $_GET["comment"];
+echo "<br>";
+if (isset($_GET["Comentario"]))
+echo $_GET["Comentario"];
 
