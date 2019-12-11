@@ -24,10 +24,11 @@ if (isset($_GET["Opcion3"]))
 echo $_GET["Opcion3"];
 
 echo "<br>";
+if (isset($_GET["Comentario"]))
+echo $_GET["Comentario"];
+
+echo "<br>";
 if (isset($_GET["Seleccionar"]))
 echo $_GET["Seleccionar"];
 
-echo "<br>";
-if (isset($_GET["Comentario"]))
-echo $_GET["Comentario"];
 
