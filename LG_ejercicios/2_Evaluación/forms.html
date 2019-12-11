@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<meta charset="UTF-8">
 <body>
 
 <h2>HTML Formas</h2>
@@ -8,10 +9,21 @@
   Nombre:<br>
   <input type="text" name="Nombre" value="">
   <br>
-  Apellido:<br>
-  <input type="text" name="Contraseña" value="">
-  <br><br>
-  <input type="submit" value="Enviar">
+  Contraseña:<br>
+  <input type="password" name="Contraseña" value="">
+  <br>
+
+  <input type="radio" name="gender" value="Hombre" checked> Hombre<br>
+  <input type="radio" name="gender" value="Mujer"> Mujer<br>
+  <input type="radio" name="gender" value="Otro"> Otro<br>
+  <br>
+  <input type="checkbox" name="Opcion1" value="Hombre"> Soltero<br>
+  <input type="checkbox" name="Opcion2" value="Casado"> Casado<br>
+  <input type="checkbox" name="Opcion3" value="Otro" checked> Otro<br><br>
+
+  <textarea rows="4" cols="50" name="comment" form="usrform">
+  Escriba el texto...</textarea>
+  <br><input type="submit" value="Enviar"><br>
 </form> 
 </body>
 </html>
