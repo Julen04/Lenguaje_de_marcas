@@ -10,20 +10,24 @@ echo "<br>";
 
 if (isset($_GET["gender"]))
 echo $_GET["gender"];
+
 echo "<br>";
 if (isset($_GET["Opcion1"]))
 echo $_GET["Opcion1"];
+
 echo "<br>";
 if (isset($_GET["Opcion2"]))
 echo $_GET["Opcion2"];
+
 echo "<br>";
 if (isset($_GET["Opcion3"]))
 echo $_GET["Opcion3"];
-echo "<br>";
 
+echo "<br>";
 if (isset($_GET["Seleccionar"]))
 echo $_GET["Seleccionar"];
 
+echo "<br>";
 if (isset($_GET["Comentario"]))
 echo $_GET["Comentario"];
 
