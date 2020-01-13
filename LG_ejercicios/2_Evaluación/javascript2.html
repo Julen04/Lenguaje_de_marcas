@@ -8,11 +8,31 @@
 
 <p>En este caso JavaScript cambia el valor del src el atributo de la imagen.</p>
 
-<button onclick="document.getElementById('myImage').src='Imagenes/feliz.webp'">Feliz</button>
+
+<button id="Feliz" onclick="document.getElementById('myImage').src='Imagenes/feliz.webp'">Feliz</button>
 
 <img id="myImage" src="Imagenes/feliz.webp" style="width:100px">
 
-<button onclick="document.getElementById('myImage').src='Imagenes/triste.png'">Triste</button>
+<button id="Triste" onclick="document.getElementById('myImage').src='Imagenes/triste.png'">Triste</button>
 
+<button id="boton0" onclick="mostrar()">Start</button>
+
+<script>
+    function ocultar () {
+        document.getElementById("myImage").style.display = "none";
+        document.getElementById("Feliz").style.display = "none";
+         document.getElementById("Triste").style.display = "none";
+    }
+
+    function mostrar () {
+        document.getElementById("myImage").style.display = "inline";
+         document.getElementById("Feliz").style.display = "inline";
+         document.getElementById("Triste").style.display = "inline";
+         document.getElementById("boton0").style.display = "none";
+    }
+    
+    ocultar();
+
+    </script>
 </body>
 </html>
