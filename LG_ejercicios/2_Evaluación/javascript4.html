@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: rgb(125, 240, 30);
+        }
+        .cuadrado {
+            width: 100px;
+            height: 100px;
+            background-color: rgb(47, 0, 255);
+        }
+
+    </style>
+
+</head>
+<body>
+    <div>
+        <div onmouseover="ocultar_cuadrado()" onmouseout="mostrar_cuadrado()" id="cuadrado1" class="cuadrado"></div>
+    </div>
+    <script>
+        function ocultar_cuadrado() {
+            document.getElementById("cuadrado1").style.backgroundColor = "black"; 
+        }
+
+        function mostrar_cuadrado() {
+            document.getElementById("cuadrado1").style.backgroundColor = "blue"; 
+        }
+    </script>
+
+</body>
+
+</html>
