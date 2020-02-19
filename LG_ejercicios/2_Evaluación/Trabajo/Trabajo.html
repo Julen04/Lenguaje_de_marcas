@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			#mesa {
+				/* coloca el tablero de juego en el centro de la pantalla*/
+				position: absolute;
+				margin: auto;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				/* define el tamaño del tablero de juego */
+				width: 960px;
+				height: 460px;
+				/* define el color del tablero de juego */
+				background-color: #317f43;
+				/* añade bordes redondeados al tablero de juego */
+				border-radius: 50px;
+			}
+			#cartas
+			{
+				/* establece el ancho total del espacio para las cartas */
+				width: 512px;
+				/* centra las cartas en el tablero de juego */
+				position: relative;
+				top: 230px;
+				left: 480px;
+				transform: translate(-50%, -50%);
+			}
+			.carta
+			{
+				/* añade un espacio entre las cartas */
+				margin: 12.5px;
+			}
+			#controles
+			{
+				/* establece el ancho de la zona de controles */
+				width: 490px;
+				/* establece el color del texto en la zona de controles*/
+				color: white;
+				/* establece el tamaño de texto de la zona de controles 1rem = tamaño de fuente del navegador */
+				font-size: 1.2rem;
+				/* posiciona el area de controles centrado bajo las cartas */
+				position: relative;
+				top: 150px;
+				left: 480px;
+				transform: translate(-50%, -50%);
+			}
+			#mensaje
+			{
+				/* posiciona el bloque de texto del area de controles ocupando una linea entera */ 
+				display: inline-block;
+				width: 490px;
+				height: 25px;
+				/* centra el texto de la etiqueta del area de controles */
+				text-align: center;
+			}
+			#btnNuevaPartida
+			{
+				/* posiciona el boton de noeva partida en una linea entera del area de controles */
+				display: inline-block;
+				width: 490px;
+				/* centra el texto en el boton */
+				text-align: center;
+			}
+		</style>
+		<script language="JavaScript">
+			/* variable que almacenará todas las cartas que podran posicionarse en el area de juego */
+			var baraja = [];
+			/* variable que almacenara el contenido de cada posicion del tablero */
+			var posiciones = ["", "", "", ""];
+			/* establece las posiciones disponibles en el tablero */
+			var tablero = ["carta1", "carta2", "carta3", "carta4"];
+			/* establece la posicion objetivo del juego */
+			var objetivo = -1;
+			
+			/* inicia una nueva partida */
+			function nuevapartida(){
+				/* añade las cartas que utilizaremos a la baraja */			
+				baraja = ["As de corazones", "As de picas", "As de diamantes", "As de treboles"];
+				/* limpia el mensaje de la zona de controles */
+				document.getElementById("mensaje").innerHTML = "";
+				/* reparte las cartes */
+				generartablero();
+				/* muestra las cartas del tablero */
+				muestracartas();
+				/* despues de un segundo oculta las cartas del tablero */
+				setTimeout(ocultar, 1000);
+			}
+			
+			/* reparte cartas de la baraja hasta que el tablero este lleno*/
+			function generartablero() {
+				/* para cada posicion del tablero */
+				for (var posicion in tablero)
+				{
+					/* elige una carta al azar de la baraja */
+					var index = Math.floor(Math.random() * baraja.length);
+					/* coloca la carta en el tablero */
+					posiciones[posicion] = baraja[index];
+					/* elimina la carta de la baraja */
+					baraja.splice(index, 1);
+				}
+			}
+			
+			/* muestra las cartas del tablero */
+			function muestracartas() {
+				/* para cada posicion del tablero */
+				for (var posicion in tablero)
+				{
+					/* muestra en la posicion del tablero la carta correspondiente */
+					document.getElementById(tablero[posicion]).src=posiciones[posicion] + ".png";
+				}
+			}
+			
+			/* voltea boca abajo las cartas del tablero */
+			function ocultar() {
+				/* para cada posicion del tablero */
+				for (var posicion in tablero)
+				{
+					/* muestra la parte trasera de la carta */
+					document.getElementById(tablero[posicion]).src="poker.png";
+				}
+				/* en 0 segundos establece un objetivo para la partida */
+				setTimeout(seleccionarcarta, 0);
+			}
+			
+			/* selecciona un acarta objetivo para la partida */
+			function seleccionarcarta() {
+				/* elige una posicion al azar del tablero */
+				objetivo = Math.floor(Math.random() * tablero.length);
+				/* muestra al usuario un mensaje con la carta que debe seleccionar */
+				document.getElementById("mensaje").innerHTML = "Busca el " + posiciones[objetivo];
+			}
+			
+			/* selecciona una carta del tablero (Accion del usuario) */
+			function eligecarta(posicion) {
+				/* si la partida esta iniciada */
+				if (objetivo != -1)
+				{
+					/* muestra la carta que el usuario a seleccionado */
+					document.getElementById(tablero[posicion]).src=posiciones[posicion] + ".png";
+					/* si el jugador ha acertado */
+					if (posicion == objetivo)
+					{
+						/* muestra un mensaje de felicitacion */
+						document.getElementById("mensaje").innerHTML = "Felicidades! Tu ganas esta ronda.";
+					}
+					/* si el jugador ha fallado */
+					else
+					{
+						/* muestra un mensaje de error */
+						document.getElementById("mensaje").innerHTML = "Lo siento... Intentalo de nuevo.";
+						/* voltea la carta correcta */
+						document.getElementById(tablero[objetivo]).src=posiciones[objetivo] + ".png";
+					}
+					/* finaliza la partida */
+					objetivo = -1;
+				}
+			}
+		</script>
+	</head>
+	<body>	
+		<!-- Tablero de juego -->
+		<div id="mesa">
+			<!-- Posiciones del tablero (por defecto se muestra la parte trasera de la carta)
+				 al hacer click sobre la posicion se llama al metodo eligecarta() de javascript
+				 con el numero de posicion, iniciando la cuenta por 0, como parametro. -->
+			<div id="cartas">
+			<!-- Posicion 1 -->
+				<img id="carta1" class="carta" src="poker.png" style="width:100px" onclick="eligecarta(0)">
+			<!-- Posicion 2 -->
+				<img id="carta2" class="carta" src="poker.png" style="width:100px" onclick="eligecarta(1)">
+			<!-- Posicion 3 -->
+				<img id="carta3" class="carta" src="poker.png" style="width:100px" onclick="eligecarta(2)">
+			<!-- Posicion 4 -->
+				<img id="carta4" class="carta" src="poker.png" style="width:100px" onclick="eligecarta(3)">
+			</div>
+			<!-- Area de controles -->
+			<div id="controles">
+			<!-- mensaje informativo (por defecto te dira el tiempo que tienes para memorizar las cartas -->
+				<div id="mensaje">Tendras 1s para memorizar la posicion de las cartas.</div>
+			<!-- salto de linea -->
+				</br>
+			<!-- boton de nueva partida, al hacer click se llama al evento nuevapartida() de javascript -->
+				<button id="btnNuevaPartida" type="button" onclick="nuevapartida()">Nueva Partida</button>
+			</div>
+		</div>
+	</body>
+</html>
