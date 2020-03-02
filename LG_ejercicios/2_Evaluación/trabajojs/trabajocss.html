@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+
+        body {
+            background-color: bisque;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: gold;
+            border-radius: 52px 52px 52px 52px;
+            -moz-border-radius: 52px 52px 52px 52px;
+            -webkit-border-radius: 52px 52px 52px 52px;
+            border: 7px solid #000000;
+            /* FLEX */
+            display: flex;
+            /* Si el contenido supera el espacio del contenedor pasa a la siguiente linea. */
+            flex-wrap: wrap;
+        }
+
+        li {
+            float: left;
+            /* Hace que el elemento calcule automaticamente su tamaño para coger todo el espacio disponible. */
+            flex: 1;
+            display: inline-flex;
+        }
+
+            li a {
+                display: inline-block;
+                color: rgb(47, 1, 248);
+                text-align: center;
+                text-decoration: none;
+                width: 100%;
+                height: 30px;
+                line-height: 30px;
+                cursor: pointer;
+            }
+
+                li a:hover {
+                    background-color: rgb(230, 98, 197);
+                }
+
+        .active {
+            background-color: rgb(255, 0, 0);
+        }
+
+        .video {
+            float: left;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: nowrap;
+            background-color: black;
+        }
+
+            .flex-container .box1 {
+                background-color: #f1f1f1;
+                width: 10%;
+                margin: 10px;
+                text-align: center;
+                line-height: 75px;
+                font-size: 30px;
+            }
+
+            .flex-container .box2 {
+                background-color: #f1f1f1;
+                width: 90%;
+                margin: 10px;
+                text-align: center;
+                line-height: 75px;
+                font-size: 30px;
+            }
+
+            .flex-container .box3 {
+                background-color: #070bf5;
+                color: #f1f1f1;
+                width: 10%;
+                margin: 2px;
+                text-align: center;
+                line-height: 75px;
+                font-size: 20px;
+            }
+
+            .flex-container .box4 {
+                background-color: #070bf5;
+                color: #f1f1f1;
+                width: 90%;
+                margin: 2px;
+                text-align: center;
+                line-height: 75px;
+                font-size: 20px;
+            }
+
+        .texto1 {
+            padding: 70px;
+            background-color: black;
+            color: #f1f1f1;
+        }
+
+        .texto2 {
+            padding: 70px;
+            background-color: rgb(115, 203, 238);
+            color: #0f0c0c;
+        }
+    </style>
+</head>
+<body>
+    <embed src="Imagenes/overtono.mp3" autostarty="true" loop="true" volume="100" width="0" height="0" hidden="true">
+    <div align="center">
+        <img src="Imagenes/banner.jpg" alt="">
+    </div>
+    <ul>
+        <li><a class="active">Inicio</a></li>
+        <li><a href="https://playoverwatch.com/es-es/news">Noticias</a></li>
+        <li><a href="trabajojs.html">Heroes</a></li>
+        <li><a href="https://eu.forums.blizzard.com/es/overwatch/">Foro</a></li>
+        <li><a href="https://www.blizzardgearstore.com/stores/blizzard/en">Tienda</a></li>
+    </ul>
+    <div class="clearfix">
+        <div>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/egJdmVcQRlE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="video"></iframe><h1 align="center" class="texto1">Overwatch es un variopinto shooter por equipos que cuenta con un diverso reparto de poderosos héroes. Explora el mundo, monta un equipo y lucha por objetivos en emocionantes combates 6 contra 6.</h1>
+        </div>
+    </div>
+    <div class="flex-container">
+        <div class="box3">Personaje</div>
+        <div class="box4">Información</div>
+    </div>
+    <div class="flex-container">
+        <div class="box1"><img src="Imagenes/winston.png" alt=""></div>
+        <div class="box2 texto2">Winston cuenta con una fuerza bestial e inventos impresionantes, como unos propulsores, un cañón tesla que lanza descargas eléctricas, un proyector de escudos portátil y más.</div>
+    </div>
+    <div class="flex-container">
+        <div class="box1"><img src="Imagenes/mercy.png" alt=""></div>
+        <div class="box2 texto2">El traje Valkyrie de Mercy la ayuda a mantenerse cerca de sus compañeros de equipo cual ángel de la guarda, y los sana, los resucita o los fortalece con el haz que emana de su bastón caduceo.</div>
+    </div>
+    <div class="flex-container">
+        <div class="box1"><img src="Imagenes/soldado76.png" alt=""></div>
+        <div class="box2 texto2">Provisto de armamento de alta tecnología, como un rifle de pulsos experimental capaz de lanzar espirales de potentes cohetes hélice, Soldado: 76 cuenta con la velocidad y la experiencia de un guerrero veterano.</div>
+    </div>
+    <div class="flex-container">
+        <div class="box1"><img src="Imagenes/rein.png" alt=""></div>
+        <div class="box2 texto2">Ataviado de una armadura potenciada y equipado con su martillo, Reinhardt realiza embestidas propulsadas por el campo de batalla y defiende a su escuadrón con un enorme campo protector.</div>
+    </div>
+    <div class="flex-container">
+        <div class="box1"><img src="Imagenes/zen.png" alt=""></div>
+        <div class="box2 texto2">Zenyatta se sirve de orbes de armonía y discordia para sanar a sus compañeros de equipo y debilitar a los oponentes, y siempre busca un estado de trascendencia que lo hace inmune al daño.</div>
+    </div>
+    <div class="flex-container">
+        <div class="box1"><img src="Imagenes/tracer.png" alt=""></div>
+        <div class="box2 texto2">Armada con dos pistolas de pulsos, bombas energéticas de tiempo y un humor rápido como el viento, Tracer es capaz de «trasladarse» instantáneamente de un sitio a otro y retroceder en su línea temporal mientras combate el mal por todo el mundo.</div>
+    </div>
+</body>
+</html>
