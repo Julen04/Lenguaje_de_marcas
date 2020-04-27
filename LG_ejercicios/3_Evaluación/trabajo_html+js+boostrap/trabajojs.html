@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: bisque;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: gold;
+            border-radius: 52px 52px 52px 52px;
+            -moz-border-radius: 52px 52px 52px 52px;
+            -webkit-border-radius: 52px 52px 52px 52px;
+            border: 7px solid #000000;
+            /* FLEX */
+            display: flex;
+            /* Si el contenido supera el espacio del contenedor pasa a la siguiente linea. */
+            flex-wrap: wrap;
+        }
+
+        li {
+            float: left;
+            /* Hace que el elemento calcule automaticamente su tamaño para coger todo el espacio disponible. */
+            flex: 1;
+            display: inline-flex;
+        }
+
+            li a {
+                color: rgb(47, 1, 248);
+                width: 100%;
+                text-align: center;
+                text-decoration: none;
+                height: 30px;
+                line-height: 30px;
+                cursor: pointer;
+            }
+
+                li a:hover {
+                    background-color: rgb(230, 98, 197);
+                }
+
+        .active {
+            background-color: rgb(255, 0, 0);
+        }
+
+        .clearfix {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            padding: 25px;
+            background-color: black;
+            color: #f1f1f1;
+        }
+
+            .clearfix h1 {
+                /* text-transform: uppercase; hace que el contenido se muestre en mayusculas. */
+                text-transform: uppercase;
+                font-size: 60px;
+            }
+
+            .clearfix h2 {
+                font-size: 25px;
+            }
+
+        #heroes {
+            margin-top: 15px;
+            display: flex;
+            /* Determina la direccion del flex. */
+            flex-direction: row;
+            /* determina en que posicion empiezan a dibujarse los elementos. (en horizontal) */
+            justify-content: flex-start;
+            /* determina en que posicion empiezan a dibujarse los elementos. (en vertical) */
+            align-content: flex-start;
+            /* hace que cuando hay un cambio de linea, los elementos esten pegados. */
+            align-items: flex-start;
+            /* Hace que si los elementos ocupan mas que el ancho de la ventana, pasen a la siguiente linea. */
+            flex-wrap: wrap;
+            padding: 20px 20px 25px 25px;
+        }
+
+        .hero {
+            width: 160px;
+            height: 275px;
+            margin-top: 5px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+            .hero:hover {
+                border: 10px solid rgb(47, 1, 248);
+            }
+
+            .hero.sombra {
+                /* Hace que el contenido se muestre en blanco y negro. */
+                filter: grayscale(100%);
+            }
+
+            .hero.resaltado {
+                box-shadow: #000000 0 0 15px;
+            }
+
+        #video {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+            #video iframe {
+                width: 560px;
+                height: 315px;
+                border: none;
+            }
+    </style>
+    <script>
+
+        function ResaltarFuncion(puntoMenu, func)
+        {
+            /* Establecemos el punto de menu como activo. */
+            ActivateItem(puntoMenu);
+            /* Si se ha hecho click en una funcion que no sea 'todas': */
+            if (func != 'todas')
+            {
+                /* Eliminamos los resaltados actuales de los heroes. */
+                EliminarResaltados();
+                /* Obtenemos todos los heroes. */
+                var heroes = document.getElementsByClassName('hero');
+                /* Empezamos a recorrer los heroes por el primero (0) */
+                var i = 0;
+                /* Si i es menor que el numero de heroes (porque la lista empieza en 0): */
+                for (i; i < heroes.length; i++)
+                {
+                    /* si el heroe numero i contiene la funcion (clase css) deseada: */
+                    if (heroes[i].classList.contains(func))
+                    {
+                        /* lo resaltamos */
+                        heroes[i].classList.add('resaltado');
+                    }
+                    /* si el heroe numero i no contiene la funcion (clase css) deseada: */
+                    else
+                    {
+                        /* lo sombreamos */
+                        heroes[i].classList.add('sombra');
+                    }
+                    /* sumamos 1 a i (i++) y repetimos desde for... */
+                }
+            }
+            /* Si se ha hecho click en 'todas': */
+            else
+            {
+                /* Eliminamos los resaltados actuales de los heroes. */
+                EliminarResaltados();
+            }
+        }
+
+        function EliminarResaltados()
+        {
+            /* Obtenemos todos los heroes. */
+            var heroes = document.getElementsByClassName('hero');
+            /* Empezamos a recorrer los heroes por el primero (0) */
+            var i = 0;
+            /* Si i es menor que el numero de heroes (porque la lista empieza en 0): */
+            for (i; i < heroes.length; i++)
+            {
+                /* eliminamos el sombreado */
+                heroes[i].classList.remove('sombra');
+                /* eliminamos el resaltado */
+                heroes[i].classList.remove('resaltado');
+                /* sumamos 1 a i (i++) y repetimos desde for... */
+            }
+        }
+
+        function ActivateItem(item)
+        {
+            document.getElementById('todas').classList.remove('active');
+            document.getElementById('tanque').classList.remove('active');
+            document.getElementById('dps').classList.remove('active');
+            document.getElementById('apoyo').classList.remove('active');
+            item.classList.add('active');
+        }
+
+        function AddVideo(src)
+        {
+            /* Obtenemos el video actual (si lo hay). */
+            var anterior = document.getElementById('video-frame');
+            /* Si habia un video: */
+            if (anterior)
+            {
+                /* lo eliminamos. */
+                anterior.remove();
+            }
+
+            /* Creamos la etiqueta iframe. */
+            var iframe = document.createElement('iframe');
+            /* Le asignamos el parametro allow */
+            iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+            /* Le asignamos el parametro allowfullscreen */
+            iframe.allowFullscreen = true;
+            iframe.src = src;
+            iframe.id = 'video-frame';
+
+            /* Añadimos el iframe al div con id video */
+            document.getElementById('video').appendChild(iframe);
+        }
+    </script>
+</head>
+<body>
+    <embed src="Imagenes/overtono.mp3" autostarty="true" loop="true" volume="100" width="0" height="0" hidden="true">
+    <div align="center">
+        <img src="Imagenes/banner.jpg" alt="">
+    </div>
+    <ul>
+        <li><a href="trabajocss.html">Inicio</a></li>
+        <li><a href="https://playoverwatch.com/es-es/news">Noticias</a></li>
+        <li><a class="active">Heroes</a></li>
+        <li><a href="https://eu.forums.blizzard.com/es/overwatch/">Foro</a></li>
+        <li><a href="https://www.blizzardgearstore.com/stores/blizzard/en">Tienda</a></li>
+    </ul>
+    <div class="clearfix">
+        <div>
+            <h1 align="center">
+                ¿Necesitas un héroe?
+            </h1>
+            <h2 align="center">
+                Overwatch cuenta con un reparto internacional de poderosos héroes con personalidades y trasfondos cautivadores. Explora la lista completa a continuación.
+            </h2>
+        </div>
+    </div>
+    <div id="video">
+    </div>
+    <ul>
+        <li><a id="todas" onclick="ResaltarFuncion(this, 'todas')" class="active">Todas</a></li>
+        <li><a id="tanque" onclick="ResaltarFuncion(this, 'tanque')">Tanque</a></li>
+        <li><a id="dps" onclick="ResaltarFuncion(this, 'dps')">Daño</a></li>
+        <li><a id="apoyo" onclick="ResaltarFuncion(this, 'apoyo')">Apoyo</a></li>
+    </ul>
+    <div id="heroes">
+        <img onclick="AddVideo('https://www.youtube.com/embed/vC8NTaofdWk');" class="hero apoyo" src="Imagenes/mercy.png" />
+        <img onclick="AddVideo('https://www.youtube.com/embed/Pj1tZWeKYnc');" class="hero tanque" src="Imagenes/rein.png" />
+        <img onclick="AddVideo('https://www.youtube.com/embed/iOqL3O2mYk8');" class="hero dps" src="Imagenes/soldado76.png" />
+        <img onclick="AddVideo('https://www.youtube.com/embed/fsKSoR6JuPc');" class="hero dps" src="Imagenes/tracer.png" />
+        <img onclick="AddVideo('https://www.youtube.com/embed/GJJXnFApNMs');" class="hero tanque" src="Imagenes/winston.png" />
+        <img onclick="AddVideo('https://www.youtube.com/embed/p9CpMjuQRPA');" class="hero apoyo" src="Imagenes/zen.png" />
+    </div>
+</body>
+</html>
